@@ -1,0 +1,29 @@
+// script.js
+document.addEventListener("DOMContentLoaded", function () {
+  const carData = [
+    // ... (Lista de veículos que você forneceu)
+  ];
+
+  const carListContainer = document.getElementById("car-list");
+
+  carData.forEach((car) => {
+    const carItem = document.createElement("div");
+    carItem.classList.add("car-item");
+    carItem.innerHTML = `
+      <strong class="bold">Transportadora:</strong> ${car.transportadora}<br>
+      <strong class="bold">Placa do Cavalo:</strong> ${car.placa}<br>
+      <strong class="bold">Canal:</strong> ${car.canal}<br>
+      <strong class="bold">Perfil:</strong> ${car.perfil}<br>
+      <strong class="bold">Status:</strong> ${car.status} ${
+      car.status === "DISPONÍVEL" ? '<span class="status-dot"></span>' : ''
+    }<br>
+      <strong class="bold">Horas Improdutivas:</strong> ${car.idleTime} horas
+    `;
+
+    if (car.idleTime === Math.max(...carData.map((c) => c.idleTime))) {
+      carItem.classList.add("highlight");
+    }
+
+    carListContainer.appendChild(carItem);
+  });
+});
